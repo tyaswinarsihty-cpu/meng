@@ -1,376 +1,542 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For My Favorite Person ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      scroll-behavior:smooth;
-      font-family: "Segoe UI", sans-serif;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    body{
-      background: linear-gradient(180deg,#0f0f0f,#1f1f1f,#2b2b2b);
-      color:white;
-      overflow-x:hidden;
-    }
+<style>
 
-    section{
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      padding:40px 20px;
-      position:relative;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+  scroll-behavior:smooth;
+}
 
-    .hero{
-      text-align:center;
-    }
+body{
+  background:#0d0d0d;
+  overflow-x:hidden;
+  color:white;
+}
 
-    .hero h1{
-      font-size:55px;
-      margin-bottom:20px;
-      animation: fadeUp 1s ease;
-    }
+/* OPENING */
 
-    .hero p{
-      max-width:700px;
-      line-height:1.8;
-      font-size:18px;
-      color:#d8d8d8;
-      animation: fadeUp 1.4s ease;
-    }
+.opening{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:url("foto4.jpg.jpeg") center/cover;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  overflow:hidden;
+}
 
-    .btn{
-      margin-top:35px;
-      padding:14px 28px;
-      border:none;
-      border-radius:40px;
-      background:white;
-      color:black;
-      font-size:16px;
-      cursor:pointer;
-      transition:0.3s;
-    }
+.opening::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(8px);
+}
 
-    .btn:hover{
-      transform:scale(1.08);
-      background:#ffd6e7;
-    }
+.opening-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  animation:fadeUp 1.2s ease;
+}
 
-    .gallery{
-      display:flex;
-      gap:25px;
-      overflow-x:auto;
-      width:100%;
-      padding:30px;
-      scroll-snap-type:x mandatory;
-    }
+.opening h1{
+  font-size:55px;
+  margin-bottom:15px;
+  font-weight:600;
+}
 
-    .gallery::-webkit-scrollbar{
-      height:8px;
-    }
+.opening p{
+  color:#ddd;
+  margin-bottom:30px;
+  font-size:16px;
+}
 
-    .gallery::-webkit-scrollbar-thumb{
-      background:#888;
-      border-radius:10px;
-    }
+.enter-btn{
+  padding:14px 34px;
+  border:none;
+  border-radius:50px;
+  background:white;
+  color:black;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
 
-    .card{
-      min-width:320px;
-      max-width:320px;
-      background:#1d1d1d;
-      border-radius:25px;
-      overflow:hidden;
-      scroll-snap-align:center;
-      transition:0.4s;
-      flex-shrink:0;
-      box-shadow:0 10px 25px rgba(0,0,0,0.4);
-    }
+.enter-btn:hover{
+  transform:scale(1.08);
+  background:#ffdce7;
+}
 
-    .card:hover{
-      transform:translateY(-10px) scale(1.03);
-    }
+/* MAIN */
 
-    .card img{
-      width:100%;
-      height:430px;
-      object-fit:cover;
-    }
+.main{
+  display:none;
+}
 
-    .caption{
-      padding:20px;
-      text-align:center;
-      color:#f1f1f1;
-      line-height:1.7;
-    }
+/* HERO */
 
-    .love-note{
-      max-width:850px;
-      text-align:center;
-      line-height:2;
-      font-size:20px;
-      color:#e7e7e7;
-    }
+.hero{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+  position:relative;
+}
 
-    .floating-heart{
-      position:fixed;
-      bottom:-50px;
-      color:#ff7aa2;
-      animation: float 7s linear infinite;
-      opacity:0.7;
-      z-index:999;
-    }
+.hero h1{
+  font-size:52px;
+  margin-bottom:20px;
+  line-height:1.2;
+}
 
-    @keyframes float{
-      from{
-        transform:translateY(0) rotate(0deg);
-        opacity:0;
-      }
-      to{
-        transform:translateY(-120vh) rotate(360deg);
-        opacity:1;
-      }
-    }
+.typing{
+  max-width:700px;
+  color:#d5d5d5;
+  line-height:1.9;
+  font-size:18px;
+  min-height:90px;
+}
 
-    @keyframes fadeUp{
-      from{
-        opacity:0;
-        transform:translateY(40px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
+/* MUSIC */
 
-    .music-box{
-      position:fixed;
-      bottom:20px;
-      right:20px;
-      background:rgba(255,255,255,0.1);
-      backdrop-filter:blur(10px);
-      padding:15px;
-      border-radius:20px;
-      z-index:999;
-    }
+.music-player{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:1000;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(12px);
+  padding:14px 18px;
+  border-radius:20px;
+}
 
-    .music-box button{
-      border:none;
-      padding:10px 18px;
-      border-radius:20px;
-      cursor:pointer;
-      background:white;
-    }
+.music-player button{
+  background:none;
+  border:none;
+  color:white;
+  cursor:pointer;
+  font-size:15px;
+}
 
-    .quote{
-      margin-top:20px;
-      font-size:24px;
-      color:#ffd9e5;
-      text-align:center;
-    }
+/* GALLERY */
 
-    .tap-box{
-      margin-top:35px;
-      background:#ffffff10;
-      border:1px solid #ffffff20;
-      padding:25px;
-      border-radius:20px;
-      cursor:pointer;
-      transition:0.3s;
-      text-align:center;
-    }
+.gallery-section{
+  padding:80px 20px;
+}
 
-    .tap-box:hover{
-      transform:scale(1.05);
-      background:#ffffff18;
-    }
+.gallery-title{
+  text-align:center;
+  font-size:42px;
+  margin-bottom:40px;
+}
 
-    .hidden-message{
-      display:none;
-      margin-top:20px;
-      color:#ffd6e7;
-      font-size:18px;
-      line-height:1.8;
-    }
+.gallery{
+  display:flex;
+  overflow-x:auto;
+  gap:24px;
+  padding-bottom:20px;
+  scroll-snap-type:x mandatory;
+}
 
-    footer{
-      padding:40px;
-      text-align:center;
-      color:#aaa;
-      font-size:14px;
-    }
+.gallery::-webkit-scrollbar{
+  height:6px;
+}
 
-  </style>
+.gallery::-webkit-scrollbar-thumb{
+  background:#555;
+  border-radius:10px;
+}
+
+.card{
+  min-width:330px;
+  background:#171717;
+  border-radius:28px;
+  overflow:hidden;
+  scroll-snap-align:center;
+  transition:0.5s;
+  flex-shrink:0;
+  box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+.card:hover{
+  transform:translateY(-12px) scale(1.03);
+}
+
+.card img{
+  width:100%;
+  height:450px;
+  object-fit:cover;
+}
+
+.caption{
+  padding:24px;
+  line-height:1.8;
+  color:#ddd;
+  text-align:center;
+}
+
+/* LETTER */
+
+.letter-section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  padding:40px 20px;
+}
+
+.letter-btn{
+  padding:18px 40px;
+  border:none;
+  border-radius:60px;
+  background:white;
+  color:black;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s;
+}
+
+.letter-btn:hover{
+  transform:scale(1.06);
+}
+
+.letter{
+  max-width:750px;
+  margin-top:40px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
+  padding:35px;
+  border-radius:28px;
+  display:none;
+  line-height:2;
+  color:#eee;
+  animation:fadeUp 1s ease;
+}
+
+/* FINAL */
+
+.final{
+  min-height:80vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+}
+
+.final h2{
+  font-size:40px;
+  line-height:1.5;
+  max-width:900px;
+}
+
+.final p{
+  margin-top:20px;
+  color:#bbb;
+}
+
+/* HEART */
+
+.heart{
+  position:fixed;
+  bottom:-20px;
+  color:#ff7ca5;
+  animation:float 6s linear infinite;
+  z-index:999;
+  opacity:0.7;
+}
+
+@keyframes float{
+  from{
+    transform:translateY(0) rotate(0deg);
+    opacity:0;
+  }
+
+  to{
+    transform:translateY(-120vh) rotate(360deg);
+    opacity:1;
+  }
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@media(max-width:768px){
+
+  .hero h1{
+    font-size:38px;
+  }
+
+  .gallery-title{
+    font-size:32px;
+  }
+
+  .card{
+    min-width:85%;
+  }
+
+  .final h2{
+    font-size:28px;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- MUSIC -->
-  <audio id="bgMusic" loop>
-    <!-- GANTI LINK MP3 DI SINI -->
-    <source src="my-stubborn-heart.mp3" type="audio/mp3">
-  </audio>
+<!-- OPENING -->
 
-  <div class="music-box">
-    <button onclick="toggleMusic()">🎵 Play Music</button>
+<div class="opening" id="opening">
+
+  <div class="opening-content">
+    <h1>for someone special ❤️</h1>
+    <p>some feelings are too beautiful to keep unspoken</p>
+
+    <button class="enter-btn" onclick="enterSite()">
+      enter
+    </button>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>To The One I Always Choose ❤️</h1>
+</div>
 
-    <p>
-      Some days are loud, some days are quiet,  
-      but somehow every moment feels softer when you're around.  
-      This little page is just a simple reminder  
-      that meeting you has been one of my favorite things in life.
-    </p>
+<!-- MUSIC -->
 
-    <button class="btn" onclick="scrollToGallery()">
-      Open Our Memories ✨
-    </button>
+<audio id="music" loop>
+  <source src="my-stubborn-heart.mp3" type="audio/mp3">
+</audio>
 
-    <div class="quote">
-      “You make ordinary moments feel unforgettable.”
-    </div>
-  </section>
+<div class="music-player">
+  <button onclick="toggleMusic()">🎵 My Stubborn Heart</button>
+</div>
 
-  <!-- GALLERY -->
-  <section id="gallerySection">
+<!-- MAIN -->
 
-    <h1 style="margin-bottom:20px;">Our Little Moments 📸</h1>
+<div class="main" id="main">
 
-    <div class="gallery">
+<!-- HERO -->
 
-      <div class="card">
-        <img src="foto1.jpg.jpeg">
-        <div class="caption">
-          The way you smile so naturally  
-          is still one of my favorite views.
-        </div>
-      </div>
+<section class="hero">
 
-      <div class="card">
-        <img src="foto2.jpg.jpeg">
-        <div class="caption">
-          Even random coffee dates somehow  
-          become special with you.
-        </div>
-      </div>
+<h1>
+You became my favorite<br>
+part of every day.
+</h1>
 
-      <div class="card">
-        <img src="foto3.jpg.jpeg">
-        <div class="caption">
-          You bring warmth, laughter,  
-          and calm into my life at the same time.
-        </div>
-      </div>
+<div class="typing" id="typing"></div>
 
-      <div class="card">
-        <img src="foto4.jpg.jpeg">
-        <div class=caption">
-          Maybe this is what comfort feels like —  
-          being completely happy beside someone.
-        </div>
-      </div>
+</section>
 
-    </div>
+<!-- GALLERY -->
 
-  </section>
+<section class="gallery-section">
 
-  <!-- MESSAGE -->
-  <section>
+<h2 class="gallery-title">
+Our Little Moments 📸
+</h2>
 
-    <div class="love-note">
-      I don't think love always needs dramatic words.  
-      Sometimes it's just staying, listening, laughing together,  
-      sharing food, taking random photos,  
-      and slowly becoming part of each other's everyday life.
-      <br><br>
-      And honestly?  
-      I really like the life I have when you're in it.
-    </div>
+<div class="gallery">
 
-    <div class="tap-box" onclick="showMessage()">
-      💌 Tap Me
-      <div class="hidden-message" id="secret">
-        Thank you for being patient with me,  
-        for understanding me,  
-        and for making my days brighter without even trying.  
-        <br><br>
-        I hope we keep creating beautiful memories together.
-      </div>
-    </div>
+<div class="card">
+<img src="foto1.jpg.jpeg">
+<div class="caption">
+Somehow your smile always makes everything feel lighter.
+</div>
+</div>
 
-  </section>
+<div class="card">
+<img src="foto2.jpg.jpeg">
+<div class="caption">
+I never get tired of moments that include you.
+</div>
+</div>
 
-  <footer>
-    Made with love ❤️
-  </footer>
+<div class="card">
+<img src="foto3.jpg.jpeg">
+<div class="caption">
+You make ordinary days feel unforgettable.
+</div>
+</div>
 
-  <script>
+<div class="card">
+<img src="foto4.jpg.jpeg">
+<div class="caption">
+Maybe comfort is just being beside the right person.
+</div>
+</div>
 
-    function scrollToGallery(){
-      document.getElementById("gallerySection")
-      .scrollIntoView({behavior:"smooth"});
-    }
+</div>
 
-    function showMessage(){
-      const msg = document.getElementById("secret");
+</section>
 
-      if(msg.style.display === "block"){
-        msg.style.display = "none";
-      } else {
-        msg.style.display = "block";
-      }
-    }
+<!-- LETTER -->
 
-    const music = document.getElementById("bgMusic");
-    let isPlaying = false;
+<section class="letter-section">
 
-    function toggleMusic(){
+<button class="letter-btn" onclick="openLetter()">
+open when you miss me 💌
+</button>
 
-      if(!isPlaying){
-        music.play();
-        isPlaying = true;
-      }else{
-        music.pause();
-        isPlaying = false;
-      }
+<div class="letter" id="letter">
 
-    }
+Thank you for being patient with me,
+for understanding me,
+and for making life feel softer in ways you probably don't realize.
 
-    // floating hearts
-    function createHeart(){
+I genuinely love every small moment with you —
+the random conversations,
+the photos,
+the coffee dates,
+the laughs,
+and even the quiet moments.
 
-      const heart = document.createElement("div");
-      heart.classList.add("floating-heart");
+No matter how busy life gets,
+I hope we never lose this version of us.
 
-      heart.innerHTML = "❤";
+</div>
 
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 15 + "px";
-      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+</section>
 
-      document.body.appendChild(heart);
+<!-- FINAL -->
 
-      setTimeout(()=>{
-        heart.remove();
-      },7000);
+<section class="final">
 
-    }
+<h2>
+No matter where life goes,<br>
+I hope it somehow keeps leading me back to you.
+</h2>
 
-    setInterval(createHeart,400);
+<p>❤️</p>
 
-  </script>
+</section>
+
+</div>
+
+<script>
+
+/* ENTER */
+
+function enterSite(){
+
+  document.getElementById("opening").style.display = "none";
+  document.getElementById("main").style.display = "block";
+
+  document.getElementById("music").play();
+
+}
+
+/* MUSIC */
+
+let playing = true;
+
+function toggleMusic(){
+
+  const music = document.getElementById("music");
+
+  if(playing){
+    music.pause();
+    playing = false;
+  }else{
+    music.play();
+    playing = true;
+  }
+
+}
+
+/* LETTER */
+
+function openLetter(){
+
+  const letter = document.getElementById("letter");
+
+  if(letter.style.display === "block"){
+    letter.style.display = "none";
+  }else{
+    letter.style.display = "block";
+  }
+
+}
+
+/* TYPING */
+
+const text =
+"You came into my life quietly, but somehow became one of the best things that ever happened to me.";
+
+let i = 0;
+
+function typing(){
+
+  if(i < text.length){
+
+    document.getElementById("typing").innerHTML += text.charAt(i);
+
+    i++;
+
+    setTimeout(typing,40);
+
+  }
+
+}
+
+typing();
+
+/* HEART */
+
+function createHeart(){
+
+  const heart = document.createElement("div");
+
+  heart.classList.add("heart");
+
+  heart.innerHTML = "❤";
+
+  heart.style.left = Math.random() * 100 + "vw";
+
+  heart.style.fontSize = Math.random() * 18 + 14 + "px";
+
+  heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{
+    heart.remove();
+  },7000);
+
+}
+
+setInterval(createHeart,400);
+
+</script>
 
 </body>
 </html>
